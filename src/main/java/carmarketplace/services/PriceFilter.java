@@ -1,13 +1,11 @@
 package carmarketplace.services;
 
 import carmarketplace.model.Listing;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PriceFilter implements ListingFilter {
-    private final int maxPrice;
-
-    public PriceFilter(int maxPrice) {
-        this.maxPrice = maxPrice;
-    }
+    private int maxPrice = 120000;
 
     public boolean matches(Listing listing) {
         var filterPrice = listing.getPrice() <= maxPrice;

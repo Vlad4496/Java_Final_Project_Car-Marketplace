@@ -6,23 +6,29 @@ import carmarketplace.services.MarketplaceService;
 import carmarketplace.services.PriceFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 import java.util.Scanner;
 
 @SpringBootApplication
 public class Main {
     public static void main(String[] args) {
-        var context = SpringApplication.run(Main.class, args);
+        ApplicationContext context =
+                SpringApplication.run(Main.class, args);
 
         MarketplaceService service =
                 context.getBean(MarketplaceService.class);
-        Scanner scanner = new Scanner(System.in);
 
-        Listing listing = ListingBuilder.fromConsole(scanner);
+        ListingBuilder builder =
+                context.getBean(ListingBuilder.class);
+
+        PriceFilter priceFilter =
+                context.getBean(PriceFilter.class);
+
+        var listing = builder.fromConsole();
         service.addListing(listing);
 
-        PriceFilter pf = new PriceFilter(120000);
-        service.filterListings(pf)
+        service.filterListings(priceFilter)
                 .forEach(System.out::println);
     }
 }

@@ -1,60 +1,69 @@
 package carmarketplace.builder;
 
 import carmarketplace.model.*;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
 public class ListingBuilder {
 
-    public static Listing fromConsole(Scanner sc) {
+    private final Scanner scanner;
+
+    public ListingBuilder(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public Listing fromConsole() {
+
         System.out.print("Brand: ");
-        String brand = sc.nextLine();
+        String brand = scanner.nextLine();
 
         System.out.print("Model: ");
-        String model = sc.nextLine();
+        String model = scanner.nextLine();
 
         System.out.print("Year: ");
-        int year = Integer.parseInt(sc.nextLine());
+        int year = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Km: ");
-        int km = Integer.parseInt(sc.nextLine());
+        int km = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Transmission (AUTOMATE / MANUAL): ");
         Transmission transmission =
-                Transmission.valueOf(sc.nextLine().trim().toUpperCase());
+                Transmission.valueOf(scanner.nextLine().trim().toUpperCase());
 
         System.out.print("Fuel (GASOLINE / DIESEL / HYBRID): ");
         FuelType fuel =
-                FuelType.valueOf(sc.nextLine().trim().toUpperCase());
+                FuelType.valueOf(scanner.nextLine().trim().toUpperCase());
 
         System.out.print("Body (SEDAN / SUV): ");
         BodyType body =
-                BodyType.valueOf(sc.nextLine().trim().toUpperCase());
+                BodyType.valueOf(scanner.nextLine().trim().toUpperCase());
 
         Car car = new Car(brand, model, year, km, transmission, fuel, body);
 
         System.out.print("Seller name: ");
-        String firstName = sc.nextLine();
+        String firstName = scanner.nextLine();
 
         System.out.print("Seller last name: ");
-        String lastName = sc.nextLine();
+        String lastName = scanner.nextLine();
 
         System.out.print("Email: ");
-        String email = sc.nextLine();
+        String email = scanner.nextLine();
 
         System.out.print("Age: ");
-        int age = Integer.parseInt(sc.nextLine());
+        int age = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Phone: ");
-        String phone = sc.nextLine();
+        String phone = scanner.nextLine();
 
         User user = new User(firstName, lastName, email, age, phone);
 
         System.out.print("Price: ");
-        int price = Integer.parseInt(sc.nextLine());
+        int price = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Description: ");
-        String desc = sc.nextLine();
+        String desc = scanner.nextLine();
 
         return new Listing(0, car, user, price, desc);
     }

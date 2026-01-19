@@ -4,17 +4,17 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Car {
-    private final String brand;
-    private final String model;
-    private final int year;
-    private final long kilometers;
-    private final Transmission transmission;
-    private final FuelType fuelType;
-    private final BodyType bodyType;
+    private String brand;
+    private String model;
+    private int year;
+    private long kilometers;
+    private Transmission transmission;
+    private FuelType fuelType;
+    private BodyType bodyType;
 
     public Car(String brand, String model, int year, long kilometers, Transmission transmission, FuelType fuelType, BodyType bodyType) {
-        this.brand = Objects.requireNonNull(brand);
-        this.model = Objects.requireNonNull(model);
+        this.brand = brand;
+        this.model = model;
 
         int currentYear = LocalDate.now().getYear();
         if(year <= currentYear && year > 2005) {
@@ -28,13 +28,41 @@ public class Car {
         } else {
             throw new IllegalArgumentException("Kilometers cannot be negative");
         }
-        this.transmission = Objects.requireNonNull(transmission);
-        this.fuelType = Objects.requireNonNull(fuelType);
-        this.bodyType = Objects.requireNonNull(bodyType);
+        this.transmission = transmission;
+        this.fuelType = fuelType;
+        this.bodyType = bodyType;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public long getKilometers() {
+        return kilometers;
+    }
+
+    public Transmission getTransmission() {
+        return transmission;
+    }
+
+    public FuelType getFuelType() {
+        return fuelType;
+    }
+
+    public BodyType getBodyType() {
+        return bodyType;
     }
 
     public String getModel() {
         return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     @Override

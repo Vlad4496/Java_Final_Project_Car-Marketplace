@@ -1,11 +1,11 @@
 package carmarketplace.model;
 
 public class User {
-    private final String firstName;
-    private final String lastName;
-    private final String email;
-    private final int age;
-    private final String phoneNumber;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private int age;
+    private String phoneNumber;
 
     public User(String firstName, String lastName, String email, int age, String phoneNumber) {
         this.firstName = firstName;
@@ -13,6 +13,26 @@ public class User {
         this.email = email;
         this.age = age;
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     @Override

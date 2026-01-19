@@ -4,7 +4,7 @@ import carmarketplace.model.Listing;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PriceFilter implements ListingFilter {
+public class FilteringServices implements ListingFilter {
     private int maxPrice = 120000;
 
     public boolean matches(Listing listing) {

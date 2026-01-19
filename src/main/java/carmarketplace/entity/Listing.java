@@ -1,23 +1,35 @@
-package carmarketplace.model;
+package carmarketplace.entity;
 
-import java.util.Objects;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "listing")
 public class Listing {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "car_id")
     private Car car;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User seller;
     private int price;
     private String description;
 
-    public Listing(int id, Car car, User seller, int price, String description) {
-        this.id = id;
+    public Listing(Car car, User seller, int price, String description) {
         this.car = car;
         this.seller = seller;
         this.price = price;
         this.description = description;
     }
 
-    public int getId() {
+    public Listing() {
+
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -25,34 +37,26 @@ public class Listing {
         return car;
     }
 
+
     public User getSeller() {
         return seller;
+    }
+
+
+    public int getPrice() {
+        return price;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    @Override
-    public String toString() {
-        return "Listing{" +
-                "id=" + id +
-                ", car=" + car +
-                ", seller=" + seller +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                '}';
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setCar(Car car) {
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.car = car;
     }
 
     public void setSeller(User seller) {
@@ -65,8 +69,5 @@ public class Listing {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setSeller(carmarketplace.entity.User user) {
     }
 }

@@ -18,25 +18,21 @@ public class ListingController {
         this.listingService = listingService;
     }
 
-    // GET /api/listings
     @GetMapping
     public List<ListingDTO> getAllListings() {
         return listingService.getAllListings();
     }
 
-    // GET /api/listings/{id}
     @GetMapping("/{id}")
     public ListingDTO getListingById(@PathVariable long id) {
         return listingService.getListingById(id);
     }
 
-    // POST /api/listings
     @PostMapping
     public ListingDTO createListing(@RequestBody CreateListingRequest request) {
         return listingService.createListing(request);
     }
 
-    // DELETE /api/listings/{id}
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteListingById(@PathVariable long id) {
         listingService.deleteListingById(id);

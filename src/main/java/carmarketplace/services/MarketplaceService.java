@@ -21,10 +21,9 @@ public class MarketplaceService {
                 '}';
     }
 
-    public List<Listing> filterListings(FilteringServices filter) {
+    public List<Listing> filterListings(ListingFilter filter) {
         return listings.stream()
                 .filter(filter::matches)
                 .toList();
     }
-
 }

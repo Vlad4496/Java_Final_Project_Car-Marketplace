@@ -4,9 +4,10 @@ import carmarketplace.model.Listing;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FilteringServices implements ListingFilter {
+public class PriceFilter implements ListingFilter {
     private int maxPrice = 120000;
 
+    @Override
     public boolean matches(Listing listing) {
         var filterPrice = listing.getPrice() <= maxPrice;
         if(!filterPrice) {
